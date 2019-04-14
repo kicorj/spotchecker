@@ -2,7 +2,12 @@ package br.com.projuris.challenge.spotchecker.checker.action;
 
 import br.com.projuris.challenge.spotchecker.checker.SpotChecker;
 
-public class TotalSpotsAction implements SpotCheckerAction {
+/**
+ * This class is responsible for calculating the number of spots of the total area
+ * @author kico
+ *
+ */
+public class NumberOfSpotsAction implements SpotCheckerAction {
 
 	@Override
 	public void execute(SpotChecker spotChecker) {

@@ -23,7 +23,7 @@ public class SpotChecker {
 	private double spotsAverageArea = 0d;
 	private int biggestSpotArea = 0;
 	
-	public SpotChecker(int[][] shape) throws InvalidMatrixFormatException {
+	public SpotChecker(int[][] shape) {
 		super();
 		this.shape = shape;
 		

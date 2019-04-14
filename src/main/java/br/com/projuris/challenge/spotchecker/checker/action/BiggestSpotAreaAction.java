@@ -2,6 +2,11 @@ package br.com.projuris.challenge.spotchecker.checker.action;
 
 import br.com.projuris.challenge.spotchecker.checker.SpotChecker;
 
+/**
+ * This class is responsible for calculating the biggest spot
+ * @author kico
+ *
+ */
 public class BiggestSpotAreaAction implements SpotCheckerAction {
 
 	@Override

@@ -3,11 +3,14 @@ package br.com.projuris.challenge.spotchecker.checker;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.ProcessingException;
-
 import br.com.projuris.challenge.spotchecker.InvalidMatrixFormatException;
 import br.com.projuris.challenge.spotchecker.checker.action.SpotCheckerAction;
 
+/**
+ * This class performs the necessary calculations and builds the final result of the spot check
+ * @author kico
+ *
+ */
 public class SpotCheckBuilder {
 
 	private List<SpotCheckerAction> actions;
@@ -29,7 +32,7 @@ public class SpotCheckBuilder {
 		try {
 			spotChecker = new SpotChecker(shape);
 		} catch (InvalidMatrixFormatException e) {
-			throw new ProcessingException("");
+			throw new InvalidMatrixFormatException();
 		}
 
 		//Obtain the list of spots

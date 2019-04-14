@@ -18,14 +18,8 @@ public class BadRequestExceptionHandler implements ExceptionMapper<ProcessingExc
 	@Override
 	public Response toResponse(final ProcessingException exception) {
 		return Response.status(Response.Status.BAD_REQUEST)
-				.entity(prepareMessage(exception))
+				.entity(MESSAGE)
                 .type("text/plain")
                 .build();
 		}
-
-	private String prepareMessage(ProcessingException exception) {
-       return MESSAGE;
-	}
-  
-  
 }

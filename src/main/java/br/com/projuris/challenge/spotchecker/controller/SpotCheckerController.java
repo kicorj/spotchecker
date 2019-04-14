@@ -12,7 +12,7 @@ import br.com.projuris.challenge.spotchecker.checker.SpotCheckerResult;
 import br.com.projuris.challenge.spotchecker.checker.action.AverageAreaAction;
 import br.com.projuris.challenge.spotchecker.checker.action.BiggestSpotAreaAction;
 import br.com.projuris.challenge.spotchecker.checker.action.TotalAreaAction;
-import br.com.projuris.challenge.spotchecker.checker.action.TotalSpotsAction;
+import br.com.projuris.challenge.spotchecker.checker.action.NumberOfSpotsAction;
 
 /**
  * SpotCheckerController Class
@@ -30,7 +30,7 @@ public class SpotCheckerController {
     	
     	SpotCheckBuilder builder = new SpotCheckBuilder(shape);
     	builder.addAction(new TotalAreaAction());
-    	builder.addAction(new TotalSpotsAction());
+    	builder.addAction(new NumberOfSpotsAction());
     	builder.addAction(new AverageAreaAction());
     	builder.addAction(new BiggestSpotAreaAction());
     	SpotCheckerResult result = builder.build();
