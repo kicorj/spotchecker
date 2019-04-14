@@ -1,4 +1,4 @@
-package br.com.projuris.challenge;
+package br.com.projuris.challenge.spotchecker.checker;
 
 import javax.json.bind.annotation.JsonbProperty;
 

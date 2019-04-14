@@ -1,4 +1,4 @@
-package br.com.projuris.challenge;
+package br.com.projuris.challenge.spotchecker;
 
 import javax.ws.rs.NotAllowedException;
 import javax.ws.rs.core.Response;
@@ -24,9 +24,7 @@ public class MehodNotAllowedExceptionHandler implements ExceptionMapper<NotAllow
 		}
 
 	private String prepareMessage(NotAllowedException exception) {
-       String msg = MESSAGE;
-       return msg;
+       return MESSAGE;
 	}
-  
   
 }

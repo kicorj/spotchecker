@@ -1,4 +1,4 @@
-package br.com.projuris.challenge;
+package br.com.projuris.challenge.spotchecker;
 
 /**
  * InvalidMatrixFormatException Class

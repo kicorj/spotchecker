@@ -1,4 +1,4 @@
-package br.com.projuris.challenge;
+package br.com.projuris.challenge.spotchecker;
 
 import javax.ws.rs.ProcessingException;
 import javax.ws.rs.core.Response;
@@ -24,8 +24,7 @@ public class BadRequestExceptionHandler implements ExceptionMapper<ProcessingExc
 		}
 
 	private String prepareMessage(ProcessingException exception) {
-       String msg = MESSAGE;
-       return msg;
+       return MESSAGE;
 	}
   
   

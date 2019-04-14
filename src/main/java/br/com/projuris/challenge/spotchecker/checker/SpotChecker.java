@@ -1,7 +1,9 @@
-package br.com.projuris.challenge;
+package br.com.projuris.challenge.spotchecker.checker;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.projuris.challenge.spotchecker.InvalidMatrixFormatException;
 
 /**
  * SpotChecker Class
@@ -14,8 +16,12 @@ public class SpotChecker {
 	private static final int SPOTTED_PIXEL = 1;
 	private static final int SHAPE_SIZE = 4;
 	private int [][] shape;
-	int totalSpots = 0;
-	private List<Integer> islandList = new ArrayList<Integer>();
+	
+	private List<Integer> spotList = new ArrayList<>();
+	private int totalArea = 0;
+	private int totalSpots = 0;
+	private double spotsAverageArea = 0d;
+	private int biggestSpotArea = 0;
 	
 	public SpotChecker(int[][] shape) throws InvalidMatrixFormatException {
 		super();
@@ -58,60 +64,82 @@ public class SpotChecker {
 	 * @param islandList
 	 * @param index
 	 */
-	private void findSpot(int[][] array, int x, int y, List<Integer> islandList, int index) {
+	private void findSpot(int[][] array, int x, int y, int index) {
 		
 		// First test invalid coordinates
-		if(x < 0) return;
-		if(y < 0) return;
-		if(x == array.length) return;
-		if(y == array[x].length) return;
+		if(x < 0) {
+			return;
+		}
+		if(y < 0) {
+			return;
+		}
+		if(x == array.length) {
+			return;
+		}
+		if(y == array[x].length) {
+			return;
+		}
 		
 		//Search North, South, East and West directions
         if (array[x][y] == 1) {
         	//Mark spoted pixel as 0 to not be counted again
             array[x][y] = 0;
-            int sum = islandList.get(index) + 1;
-            islandList.set(index, sum);
-            findSpot(array, x - 1, y, islandList, index);
-            findSpot(array, x + 1, y, islandList, index);
-            findSpot(array, x, y + 1, islandList, index);
-            findSpot(array, x, y - 1, islandList, index);
+            int sum = spotList.get(index) + 1;
+            spotList.set(index, sum);
+            findSpot(array, x - 1, y, index);
+            findSpot(array, x + 1, y, index);
+            findSpot(array, x, y + 1, index);
+            findSpot(array, x, y - 1, index);
         }
     }
 	
-	private int calculateTotalArea() {
-		return islandList.stream().mapToInt(i -> i.intValue()).sum();
-	}
-	
-	private int calculateBiggestSpotArea() {
-		return islandList.stream().mapToInt(i -> i.intValue()).max().orElse(0);
-	}
-	
-	private double calculateAverageArea(int totalArea) {
-		return totalSpots == 0 ? 0 : (double) totalArea/totalSpots;
-	}
-	
-	public SpotCheckerResult calculate() {
-
-		totalSpots = 0;
+	public void calculateSpotList() {
+		int sumSpots = 0;
  		for(int i=0; i < shape.length; i++){
              for(int j=0; j < shape[i].length; j++){
                  if(shape[i][j] == 1){
-                	 totalSpots ++;
-                     islandList.add(0);
-                     findSpot(shape,i,j, islandList, totalSpots - 1);
+                     spotList.add(0);
+                     sumSpots++;
+                     findSpot(shape,i,j, sumSpots - 1);
                  }
-  
              }
          }
- 		
- 		int totalArea = calculateTotalArea();
- 		double spotsAverageArea = calculateAverageArea(totalArea);
- 		int max = calculateBiggestSpotArea();
- 		
- 		SpotCheckerResult result = new SpotCheckerResult(totalArea,totalSpots,spotsAverageArea, max);
+	}
 
- 		return result;
+	public List<Integer> getSpotList() {
+		return spotList;
+	}
+
+	public int getTotalArea() {
+		return totalArea;
+	}
+
+	public void setTotalArea(int totalArea) {
+		this.totalArea = totalArea;
+	}
+
+	public int getTotalSpots() {
+		return totalSpots;
+	}
+
+	public void setTotalSpots(int totalSpots) {
+		this.totalSpots = totalSpots;
+	}
+
+	public double getSpotsAverageArea() {
+		return spotsAverageArea;
+	}
+
+	public void setSpotsAverageArea(double spotsAverageArea) {
+		this.spotsAverageArea = spotsAverageArea;
+	}
+
+	public int getBiggestSpotArea() {
+		return biggestSpotArea;
+	}
+
+	public void setBiggestSpotArea(int biggestSpotArea) {
+		this.biggestSpotArea = biggestSpotArea;
 	}
 	
 }
